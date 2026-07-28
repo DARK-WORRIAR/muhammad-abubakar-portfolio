@@ -1,0 +1,26 @@
+import { motion } from "framer-motion";
+
+export function Reveal({ children, delay = 0, y = 24, className = "" }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+export function SectionHeader({ eyebrow, title, className = "" }) {
+  return (
+    <Reveal className={`mb-14 ${className}`}>
+      <p className="mono-label text-signal mb-3">{eyebrow}</p>
+      <h2 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight">
+        {title}
+      </h2>
+    </Reveal>
+  );
+}
