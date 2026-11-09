@@ -16,7 +16,7 @@ export const profile = {
 export const stack = [
   {
     key: "languages",
-    items: ["JavaScript (ES6+)", "Dart", "Python", "HTML5", "CSS3","React.js", "MERN Stack"],
+    items: ["JavaScript (ES6+)", "Dart", "Python", "HTML5", "CSS3", "React.js", "MERN Stack"],
   },
   {
     key: "frameworks",
@@ -57,7 +57,7 @@ export const experience = [
     role: "Web Developer Intern",
     org: "Safex Solutions",
     location: "Punjab, Pakistan",
-    period: "June 2026 — Present",
+    period: "June 2026 — August 2026",
     points: [
       "Joined the engineering team to build and maintain client-facing web features using MERN Stack, Django, Flask, MYSQL, and JavaScript.",
       "Collaborated with senior developers on debugging, code reviews, and structuring responsive, mobile-first UI components.",
@@ -68,31 +68,13 @@ export const experience = [
 
 export const projects = [
   {
-    name: "Lab Report Management System",
-    tags: ["HTML", "CSS", "JavaScript"],
+    name: "CreatixTech — POS & Business Management",
+    tags: ["React", "JavaScript", "Tailwind CSS"],
     description:
-      "A web application that digitises lab report generation and management, eliminating paper-based record-keeping for laboratory workflows. Dynamic form handling, structured data display, and print-ready report formatting — entirely in vanilla JavaScript.",
-    detail: "Deployed via Vercel with a GitHub-linked repository enabling continuous deployment on every push.",
-    url: "https://lab-report-git-main-abubakars-projects-8ab59925.vercel.app",
+      "A comprehensive point-of-sale and business management platform designed to streamline retail operations. Features real-time sales logging, inventory tracking, customer & staff management, multi-branch support, and actionable financial summaries.",
+    detail: "Modern, responsive dashboard deployed on Vercel with fast client-side performance, accessible data views, and seamless workflows.",
+    url: "https://creatix-tech.vercel.app",
     index: "01",
-  },
-  {
-    name: "Shop Finance Web App",
-    tags: ["HTML", "CSS", "JavaScript"],
-    description:
-      "A client-side financial tracking application that allows small business owners to log transactions, monitor expenses, and view running summaries in real time.",
-    detail: "Intuitive, fully responsive UI with accessible data tables and live calculation features — built without external libraries.",
-    url: "https://dark-worriar.github.io/Shop-Finance/",
-    index: "02",
-  },
-  {
-    name: "Personal Portfolio Website",
-    tags: ["HTML", "CSS", "JavaScript"],
-    description:
-      "A responsive personal portfolio featuring project showcases, skill summaries, and a contact section, hosted on GitHub Pages.",
-    detail: "CSS animations and a mobile-first layout achieve a professional look across all screen sizes.",
-    url: "https://dark-worriar.github.io/Portfolio/",
-    index: "03",
   },
   {
     name: "Haul Log — Route & ELD Planner",
@@ -101,7 +83,34 @@ export const projects = [
       "A full-stack trip-planning application for truck drivers, built around route mapping and Electronic Logging Device (ELD) style compliance tracking for hours-of-service management.",
     detail: "Deployed on Vercel with continuous deployment from a GitHub-linked repository.",
     url: "https://eld-app-one.vercel.app/",
+    index: "02",
+  },
+  {
+    name: "Lab Report Management System",
+    tags: ["HTML", "CSS", "JavaScript"],
+    description:
+      "A web application that digitises lab report generation and management, eliminating paper-based record-keeping for laboratory workflows. Dynamic form handling, structured data display, and print-ready report formatting — entirely in vanilla JavaScript.",
+    detail: "Deployed via Vercel with a GitHub-linked repository enabling continuous deployment on every push.",
+    url: "https://lab-report-git-main-abubakars-projects-8ab59925.vercel.app",
+    index: "03",
+  },
+  {
+    name: "Shop Finance Web App",
+    tags: ["HTML", "CSS", "JavaScript"],
+    description:
+      "A client-side financial tracking application that allows small business owners to log transactions, monitor expenses, and view running summaries in real time.",
+    detail: "Intuitive, fully responsive UI with accessible data tables and live calculation features — built without external libraries.",
+    url: "https://dark-worriar.github.io/Shop-Finance/",
     index: "04",
+  },
+  {
+    name: "Personal Portfolio Website",
+    tags: ["HTML", "CSS", "JavaScript"],
+    description:
+      "A responsive personal portfolio featuring project showcases, skill summaries, and a contact section, hosted on GitHub Pages.",
+    detail: "CSS animations and a mobile-first layout achieve a professional look across all screen sizes.",
+    url: "https://dark-worriar.github.io/Portfolio/",
+    index: "05",
   },
 ];
 

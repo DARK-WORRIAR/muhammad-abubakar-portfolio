@@ -8,12 +8,19 @@ export default function About() {
       <div className="grid md:grid-cols-5 gap-12 items-start">
         <Reveal delay={0.1} className="md:col-span-2">
           <div className="relative rounded-2xl overflow-hidden border border-steel bg-panel aspect-[4/5]">
-            <img
-              src="/profile.jpg"
-              alt={profile.name}
-              className="w-full h-full object-cover grayscale contrast-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+            <picture>
+              <source srcSet="/profile.webp" type="image/webp" />
+              <img
+                src="/profile.jpg"
+                alt={profile.name}
+                width="413"
+                height="531"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-full object-cover grayscale contrast-110"
+              />
+            </picture>
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-0 left-0 right-0 p-5">
               <p className="font-display text-xl font-semibold">{profile.name}</p>
               <p className="mono-label text-circuit mt-1">{profile.role}</p>

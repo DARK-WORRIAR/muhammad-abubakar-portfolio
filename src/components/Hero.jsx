@@ -1,19 +1,96 @@
 import { motion } from "framer-motion";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useState, useEffect, useRef } from "react";
 import { profile } from "../data";
 
 const HeroScene = lazy(() => import("./HeroScene"));
 
+function HeroBackdrop() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+      {/* Ambient glowing radial lights matching theme */}
+      <div className="absolute -top-20 right-1/4 w-[480px] h-[480px] rounded-full bg-signal/15 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/4 -right-16 w-[420px] h-[420px] rounded-full bg-circuit/15 blur-[130px] pointer-events-none" />
+      <div className="absolute -bottom-16 left-12 w-[340px] h-[340px] rounded-full bg-signal/10 blur-[100px] pointer-events-none" />
+
+      {/* Futuristic cybernetic grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #3fe0c5 1px, transparent 1px), linear-gradient(to bottom, #3fe0c5 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+          maskImage:
+            "radial-gradient(ellipse 75% 65% at 65% 45%, #000 30%, transparent 80%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 75% 65% at 65% 45%, #000 30%, transparent 80%)",
+        }}
+      />
+    </div>
+  );
+}
+
 export default function Hero() {
+  const sectionRef = useRef(null);
+  const [load3D, setLoad3D] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+
+  useEffect(() => {
+    // Check if user prefers reduced motion
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    if (prefersReduced) return;
+
+    // Defer loading heavy 3D assets until after initial paint & idle
+    let timerId;
+    const triggerLoad = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(() => setLoad3D(true), { timeout: 1200 });
+      } else {
+        timerId = setTimeout(() => setLoad3D(true), 400);
+      }
+    };
+
+    if (document.readyState === "complete") {
+      triggerLoad();
+    } else {
+      window.addEventListener("load", triggerLoad, { once: true });
+      return () => {
+        window.removeEventListener("load", triggerLoad);
+        if (timerId) clearTimeout(timerId);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="relative min-h-screen flex items-center overflow-hidden border-b border-steel"
     >
       <div className="absolute inset-0">
-        <Suspense fallback={null}>
-          <HeroScene />
-        </Suspense>
+        <HeroBackdrop />
+
+        {load3D && (
+          <Suspense fallback={null}>
+            <div className="absolute inset-0 transition-opacity duration-1000 ease-out opacity-100">
+              <HeroScene active={isInView} />
+            </div>
+          </Suspense>
+        )}
+
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/10 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-transparent to-transparent pointer-events-none" />
       </div>

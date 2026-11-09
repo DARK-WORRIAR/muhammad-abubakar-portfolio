@@ -131,26 +131,14 @@ function Particles() {
   );
 }
 
-function Rig() {
-  const ref = useRef();
-  useFrame((state) => {
-    if (ref.current) {
-      const t = state.clock.getElapsedTime();
-      ref.current.position.x = Math.sin(t * 0.08) * 0.4;
-      ref.current.position.y = 1 + Math.cos(t * 0.06) * 0.2;
-      ref.current.lookAt(0, 0, 0);
-    }
-  });
-  return null;
-}
-
-export default function HeroScene() {
+export default function HeroScene({ active = true }) {
   const colors = ["#ff7a3d", "#3fe0c5", "#ff7a3d", "#3fe0c5"];
   return (
     <Canvas
+      frameloop={active ? "always" : "never"}
       camera={{ position: [4.5, 2.2, 6], fov: 42 }}
       dpr={[1, 1.5]}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
     >
       <ambientLight intensity={0.6} />
       <pointLight position={[5, 5, 5]} intensity={1.2} color="#ff7a3d" />

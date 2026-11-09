@@ -69,7 +69,7 @@ export default function Projects() {
   return (
     <section id="projects" className="max-w-6xl mx-auto px-6 md:px-10 py-28">
       <SectionHeader eyebrow="// 04 — projects" title="Shipped, not just staged." />
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((p, i) => (
           <TiltCard key={p.name} project={p} delay={i * 0.12} />
         ))}
